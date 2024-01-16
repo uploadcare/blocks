@@ -23,5 +23,5 @@ instance.addEventListener('data-output', onDataOutput);
 
 () => {
   const ref = useRef<InstanceType<UploadCtxProvider>>(null);
-  return <lr-upload-ctx-provider ctx-name="ctx" ref={ref}></lr-upload-ctx-provider>;
+  return <lr-upload-ctx-provider ctx="ctx" ref={ref}></lr-upload-ctx-provider>;
 };

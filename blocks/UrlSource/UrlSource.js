@@ -1,5 +1,6 @@
-import { UploaderBlock } from '../../abstract/UploaderBlock.js';
+import { html } from '@symbiotejs/symbiote';
 import { ActivityBlock } from '../../abstract/ActivityBlock.js';
+import { UploaderBlock } from '../../abstract/UploaderBlock.js';
 import { UploadSource } from '../utils/UploadSource.js';
 
 export class UrlSource extends UploaderBlock {
@@ -36,25 +37,25 @@ export class UrlSource extends UploaderBlock {
   }
 }
 
-UrlSource.template = /* HTML */ `
+UrlSource.template = html`
   <lr-activity-header>
-    <button type="button" class="mini-btn" set="onclick: *historyBack">
+    <button type="button" class="mini-btn" bind="onclick: *historyBack">
       <lr-icon name="back"></lr-icon>
     </button>
     <div>
       <lr-icon name="url"></lr-icon>
       <span l10n="caption-from-url"></span>
     </div>
-    <button type="button" class="mini-btn close-btn" set="onclick: *closeModal">
+    <button type="button" class="mini-btn close-btn" bind="onclick: *closeModal">
       <lr-icon name="close"></lr-icon>
     </button>
   </lr-activity-header>
   <form class="content">
-    <input placeholder="https://" class="url-input" type="text" ref="input" set="oninput: onInput" />
+    <input placeholder="https://" class="url-input" type="text" ref="input" bind="oninput: onInput" />
     <button
       type="submit"
       class="url-upload-btn primary-btn"
-      set="onclick: onUpload; @disabled: importDisabled"
+      bind="onclick: onUpload; @disabled: importDisabled"
     ></button>
   </form>
 `;

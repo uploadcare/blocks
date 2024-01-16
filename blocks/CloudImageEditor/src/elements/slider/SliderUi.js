@@ -1,3 +1,4 @@
+import { html } from '@symbiotejs/symbiote';
 import { Block } from '../../../../../abstract/Block.js';
 
 export class SliderUi extends Block {
@@ -166,7 +167,7 @@ export class SliderUi extends Block {
     this._observer?.disconnect();
   }
 }
-SliderUi.template = /* HTML */ `
+SliderUi.template = html`
   <div class="steps" ref="steps-el"></div>
   <div ref="thumb-el" class="thumb"></div>
   <input
@@ -174,6 +175,6 @@ SliderUi.template = /* HTML */ `
     type="range"
     ref="input-el"
     tabindex="0"
-    set="oninput: on.sliderInput; onchange: on.sliderChange; @min: min; @max: max; @value: defaultValue;"
+    bind="oninput: on.sliderInput; onchange: on.sliderChange; @min: min; @max: max; @value: defaultValue;"
   />
 `;

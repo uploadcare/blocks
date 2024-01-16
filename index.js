@@ -1,6 +1,6 @@
 // @ts-check
 // Symbiote.js
-export { BaseComponent, Data } from '@symbiotejs/symbiote';
+export { Symbiote as BaseComponent, PubSub as Data } from '@symbiotejs/symbiote';
 
 // Abstract:
 export { Block } from './abstract/Block.js';

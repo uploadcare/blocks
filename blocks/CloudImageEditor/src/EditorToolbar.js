@@ -1,4 +1,5 @@
 // @ts-check
+import { html } from '@symbiotejs/symbiote';
 import { debounce } from '../../utils/debounce.js';
 import { CloudImageEditorBase } from './CloudImageEditorBase.js';
 import { EditorCropButtonControl } from './EditorCropButtonControl.js';
@@ -18,15 +19,15 @@ import { viewerImageSrc } from './util.js';
 
 /** @param {String} id */
 function renderTabToggle(id) {
-  return /* HTML */ `
-    <lr-presence-toggle class="tab-toggle" set="visible: presence.tabToggle.${id}; styles: presence.tabToggleStyles;">
+  return html`
+    <lr-presence-toggle class="tab-toggle" bind="visible: presence.tabToggle.${id}; styles: presence.tabToggleStyles;">
       <lr-btn-ui
         theme="boring"
         ref="tab-toggle-${id}"
         data-id="${id}"
         icon="${id}"
         tabindex="0"
-        set="onclick: on.clickTab;"
+        bind="onclick: on.clickTab;"
       >
       </lr-btn-ui>
     </lr-presence-toggle>
@@ -35,8 +36,11 @@ function renderTabToggle(id) {
 
 /** @param {String} id */
 function renderTabContent(id) {
-  return /* HTML */ `
-    <lr-presence-toggle class="tab-content" set="visible: presence.tabContent.${id}; styles: presence.tabContentStyles">
+  return html`
+    <lr-presence-toggle
+      class="tab-content"
+      bind="visible: presence.tabContent.${id}; styles: presence.tabContentStyles"
+    >
       <lr-editor-scroller hidden-scrollbar>
         <div class="controls-list_align">
           <div class="controls-list_inner" ref="controls-list-${id}"></div>
@@ -322,7 +326,7 @@ export class EditorToolbar extends CloudImageEditorBase {
     this.sub('*editorTransformations', (editorTransformations) => {
       let appliedFilter = editorTransformations?.filter?.name;
       if (this.$['*currentFilter'] !== appliedFilter) {
-        this.$['*currentFilter'] = appliedFilter;
+        this.$['*currentFilter'] = appliedFilter ?? null;
       }
     });
 
@@ -387,32 +391,35 @@ export class EditorToolbar extends CloudImageEditorBase {
   }
 }
 
-EditorToolbar.template = /* HTML */ `
-  <lr-line-loader-ui set="active: showLoader"></lr-line-loader-ui>
+EditorToolbar.template = html`
+  <lr-line-loader-ui bind="active: showLoader"></lr-line-loader-ui>
   <div class="info-tooltip_container">
     <div class="info-tooltip_wrapper">
       <div ref="tooltip-el" class="info-tooltip info-tooltip_hidden">{{*operationTooltip}}</div>
     </div>
   </div>
   <div class="toolbar-container">
-    <lr-presence-toggle class="sub-toolbar" set="visible: presence.mainToolbar; styles: presence.subTopToolbarStyles">
+    <lr-presence-toggle class="sub-toolbar" bind="visible: presence.mainToolbar; styles: presence.subTopToolbarStyles">
       <div class="tab-content-row">${ALL_TABS.map(renderTabContent).join('')}</div>
       <div class="controls-row">
-        <lr-btn-ui theme="boring" icon="closeMax" set="onclick: on.cancel"> </lr-btn-ui>
-        <lr-presence-toggle class="tab-toggles" set="visible: presence.tabToggles; styles: presence.tabTogglesStyles">
+        <lr-btn-ui theme="boring" icon="closeMax" bind="onclick: on.cancel"> </lr-btn-ui>
+        <lr-presence-toggle class="tab-toggles" bind="visible: presence.tabToggles; styles: presence.tabTogglesStyles">
           <div ref="tabs-indicator" class="tab-toggles_indicator"></div>
           ${ALL_TABS.map(renderTabToggle).join('')}
         </lr-presence-toggle>
-        <lr-btn-ui theme="primary" icon="done" set="onclick: on.apply"> </lr-btn-ui>
+        <lr-btn-ui theme="primary" icon="done" bind="onclick: on.apply"> </lr-btn-ui>
       </div>
     </lr-presence-toggle>
-    <lr-presence-toggle class="sub-toolbar" set="visible: presence.subToolbar; styles: presence.subBottomToolbarStyles">
+    <lr-presence-toggle
+      class="sub-toolbar"
+      bind="visible: presence.subToolbar; styles: presence.subBottomToolbarStyles"
+    >
       <div class="slider">
         <lr-editor-slider ref="slider-el"></lr-editor-slider>
       </div>
       <div class="controls-row">
-        <lr-btn-ui theme="boring" set="@text: l10n.cancel; onclick: on.cancelSlider;"> </lr-btn-ui>
-        <lr-btn-ui theme="primary" set="@text: l10n.apply; onclick: on.applySlider;"> </lr-btn-ui>
+        <lr-btn-ui theme="boring" bind="@text: l10n.cancel; onclick: on.cancelSlider;"> </lr-btn-ui>
+        <lr-btn-ui theme="primary" bind="@text: l10n.apply; onclick: on.applySlider;"> </lr-btn-ui>
       </div>
     </lr-presence-toggle>
   </div>

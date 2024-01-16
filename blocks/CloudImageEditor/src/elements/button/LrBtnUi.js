@@ -1,3 +1,4 @@
+import { html } from '@symbiotejs/symbiote';
 import { Block } from '../../../../../abstract/Block.js';
 import { classNames } from '../../lib/classNames.js';
 
@@ -75,7 +76,7 @@ export class LrBtnUi extends Block {
 }
 LrBtnUi.bindAttributes({ text: 'text', icon: 'icon', reverse: 'reverse', theme: 'theme' });
 
-LrBtnUi.template = /* HTML */ `
-  <lr-icon size="20" set="className: iconCss; @name: icon;"></lr-icon>
+LrBtnUi.template = html`
+  <lr-icon size="20" bind="className: iconCss; @name: icon;"></lr-icon>
   <div class="text">{{text}}</div>
 `;

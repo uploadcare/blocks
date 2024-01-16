@@ -1,4 +1,5 @@
 // @ts-check
+import { html } from '@symbiotejs/symbiote';
 import { ActivityBlock } from '../../../abstract/ActivityBlock.js';
 import { SolutionBlock } from '../../../abstract/SolutionBlock.js';
 
@@ -52,14 +53,14 @@ export class FileUploaderInline extends SolutionBlock {
   }
 }
 
-FileUploaderInline.template = /* HTML */ ` <lr-start-from>
+FileUploaderInline.template = html` <lr-start-from>
     <lr-drop-area with-icon clickable></lr-drop-area>
     <lr-source-list wrap></lr-source-list>
     <button
       type="button"
       l10n="start-from-cancel"
       class="cancel-btn secondary-btn"
-      set="onclick: cancel; @hidden: !couldCancel"
+      bind="onclick: cancel; @hidden: !couldCancel"
     ></button>
     <lr-copyright></lr-copyright>
   </lr-start-from>

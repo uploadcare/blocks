@@ -1,8 +1,9 @@
 import { Block } from '../../abstract/Block.js';
-import { CanMan } from './CanMan.js';
-import { Range } from '../Range/Range.js';
 import { Color } from '../Color/Color.js';
+import { Range } from '../Range/Range.js';
+import { CanMan } from './CanMan.js';
 
+import { html } from '@symbiotejs/symbiote';
 import { getButtons } from './buttons.js';
 
 // TODO: get rid of side effects
@@ -137,7 +138,7 @@ export class EditorToolbar extends Block {
     });
   }
 }
-EditorToolbar.template = /* HTML */ `
-  <div class="btns" ref="btns" set="onclick: onBtnClick">${getButtons()}</div>
-  <lr-range min="0" max="200" ref="range" set="@visible: rangeActive; $.caption: rangeCaption"> </lr-range>
+EditorToolbar.template = html`
+  <div class="btns" ref="btns" bind="onclick: onBtnClick">${getButtons()}</div>
+  <lr-range min="0" max="200" ref="range" bind="@visible: rangeActive; $.caption: rangeCaption"> </lr-range>
 `;

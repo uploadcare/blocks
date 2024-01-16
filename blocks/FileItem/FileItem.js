@@ -1,4 +1,5 @@
 // @ts-check
+import { html } from '@symbiotejs/symbiote';
 import { UploadClientError, uploadFile } from '@uploadcare/upload-client';
 import { ActivityBlock } from '../../abstract/ActivityBlock.js';
 import { UploaderBlock } from '../../abstract/UploaderBlock.js';
@@ -437,34 +438,34 @@ export class FileItem extends UploaderBlock {
   }
 }
 
-FileItem.template = /* HTML */ `
+FileItem.template = html`
   <div
     class="inner"
-    set="@finished: isFinished; @uploading: isUploading; @failed: isFailed; @limit-overflow: isLimitOverflow; @focused: isFocused"
+    bind="@finished: isFinished; @uploading: isUploading; @failed: isFailed; @limit-overflow: isLimitOverflow; @focused: isFocused"
   >
-    <div class="thumb" set="style.backgroundImage: thumbUrl">
+    <div class="thumb" bind="style.backgroundImage: thumbUrl">
       <div class="badge">
-        <lr-icon set="@name: badgeIcon"></lr-icon>
+        <lr-icon bind="@name: badgeIcon"></lr-icon>
       </div>
     </div>
     <div class="file-name-wrapper">
-      <span class="file-name" set="@title: itemName">{{itemName}}</span>
-      <span class="file-error" set="@hidden: !errorText">{{errorText}}</span>
+      <span class="file-name" bind="@title: itemName">{{itemName}}</span>
+      <span class="file-error" bind="@hidden: !errorText">{{errorText}}</span>
     </div>
     <div class="file-actions">
-      <button type="button" class="edit-btn mini-btn" set="onclick: onEdit; @hidden: !isEditable">
+      <button type="button" class="edit-btn mini-btn" bind="onclick: onEdit; @hidden: !isEditable">
         <lr-icon name="edit-file"></lr-icon>
       </button>
-      <button type="button" class="remove-btn mini-btn" set="onclick: onRemove;">
+      <button type="button" class="remove-btn mini-btn" bind="onclick: onRemove;">
         <lr-icon name="remove-file"></lr-icon>
       </button>
-      <button type="button" class="upload-btn mini-btn" set="onclick: onUpload;">
+      <button type="button" class="upload-btn mini-btn" bind="onclick: onUpload;">
         <lr-icon name="upload"></lr-icon>
       </button>
     </div>
     <lr-progress-bar
       class="progress-bar"
-      set="value: progressValue; visible: progressVisible; unknown: progressUnknown"
+      bind="value: progressValue; visible: progressVisible; unknown: progressUnknown"
     >
     </lr-progress-bar>
   </div>

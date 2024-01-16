@@ -9,7 +9,7 @@ type FileUploaderMinimal = import('../index.js').FileUploaderMinimal;
 type DataOutput = import('../index.js').DataOutput;
 type CloudImageEditorBlock = import('../index.js').CloudImageEditorBlock;
 type CtxAttributes = {
-  'ctx-name': string;
+  ctx: string;
 };
 type ShadowWrapperAttributes = { 'css-src': string };
 type CommonHtmlAttributes<T> = Partial<

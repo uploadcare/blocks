@@ -1,5 +1,5 @@
+import { create, html } from '@symbiotejs/symbiote';
 import { Block } from '../../abstract/Block.js';
-import { create } from '@symbiotejs/symbiote';
 import { stringToArray } from '../../utils/stringToArray.js';
 
 export class Tabs extends Block {
@@ -70,7 +70,7 @@ Tabs.bindAttributes({
   default: null,
 });
 
-Tabs.template = /* HTML */ `
+Tabs.template = html`
   <div ref="row" class="tabs-row"></div>
   <div ref="context" class="tabs-context">
     <slot></slot>

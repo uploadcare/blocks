@@ -1,6 +1,7 @@
+import { html } from '@symbiotejs/symbiote';
 import { Block } from '../../abstract/Block.js';
-import { checkerboardCssBg } from '../svg-backgrounds/svg-backgrounds.js';
 import { TRANSPARENT_PIXEL_SRC } from '../../utils/transparentPixelSrc.js';
+import { checkerboardCssBg } from '../svg-backgrounds/svg-backgrounds.js';
 
 export class FilePreview extends Block {
   init$ = {
@@ -48,7 +49,7 @@ export class FilePreview extends Block {
   }
 }
 
-FilePreview.template = /* HTML */ ` <lr-img class="img-view" ref="img" set="@src: src; style.aa: src;" /> `;
+FilePreview.template = html` <lr-img class="img-view" ref="img" bind="@src: src; style.aa: src;" /> `;
 
 FilePreview.bindAttributes({
   checkerboard: 'checkerboard',

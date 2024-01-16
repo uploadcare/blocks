@@ -1,3 +1,4 @@
+import { html } from '@symbiotejs/symbiote';
 import { Block } from '../../abstract/Block.js';
 
 export class UiMessage {
@@ -41,11 +42,11 @@ export class MessageBox extends Block {
   }
 }
 
-MessageBox.template = /* HTML */ `
+MessageBox.template = html`
   <div class="heading">
-    <lr-icon set="@name: iconName"></lr-icon>
+    <lr-icon bind="@name: iconName"></lr-icon>
     <div class="caption">{{captionTxt}}</div>
-    <button type="button" set="onclick: onClose">
+    <button type="button" bind="onclick: onClose">
       <lr-icon name="close"></lr-icon>
     </button>
   </div>

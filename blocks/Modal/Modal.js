@@ -1,4 +1,5 @@
 // @ts-check
+import { html } from '@symbiotejs/symbiote';
 import { Block } from '../../abstract/Block.js';
 
 export class Modal extends Block {
@@ -108,7 +109,7 @@ export class Modal extends Block {
   }
 }
 
-Modal.template = /* HTML */ `
+Modal.template = html`
   <dialog ref="dialog">
     <slot></slot>
   </dialog>

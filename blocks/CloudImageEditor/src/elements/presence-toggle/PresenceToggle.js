@@ -1,5 +1,6 @@
-import { applyClassNames } from '../../lib/classNames.js';
+import { html } from '@symbiotejs/symbiote';
 import { Block } from '../../../../../abstract/Block.js';
+import { applyClassNames } from '../../lib/classNames.js';
 
 /**
  * @typedef {Object} Style
@@ -65,4 +66,4 @@ export class PresenceToggle extends Block {
     setTimeout(() => this.removeAttribute('hidden'), 0);
   }
 }
-PresenceToggle.template = /* HTML */ ` <slot></slot> `;
+PresenceToggle.template = html` <slot></slot> `;

@@ -1,6 +1,6 @@
-import { BaseComponent } from '@symbiotejs/symbiote';
+import { Symbiote, html } from '@symbiotejs/symbiote';
 
-export class Range extends BaseComponent {
+export class Range extends Symbiote {
   init$ = {
     cssLeft: '50%',
     barActive: false,
@@ -33,7 +33,7 @@ export class Range extends BaseComponent {
   }
 }
 
-Range.template = /* HTML */ `
+Range.template = html`
   <div class="track-wrapper">
     <div class="track"></div>
     <div class="bar" set -style.width="cssLeft" -@active="barActive"></div>

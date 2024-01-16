@@ -1,4 +1,4 @@
-import { BaseComponent, Data } from '@symbiotejs/symbiote';
+import { Symbiote, PubSub } from '@symbiotejs/symbiote';
 import { PROPS_MAP } from './props-map.js';
 import { CSS_PREF } from './configurations.js';
 
@@ -7,7 +7,7 @@ for (let prop in PROPS_MAP) {
   CSS_PROPS[CSS_PREF + prop] = PROPS_MAP[prop]?.default || '';
 }
 
-export class ImgConfig extends BaseComponent {
+export class ImgConfig extends Symbiote {
   cssInit$ = CSS_PROPS;
 
   /**
@@ -74,7 +74,7 @@ export class ImgConfig extends BaseComponent {
       });
       this._isnObserver = null;
     }
-    Data.deleteCtx(this);
+    PubSub.deleteCtx(this);
   }
 
   static get observedAttributes() {

@@ -3,13 +3,6 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    .config {
-      --ctx-name: 'my-uploader';
-      --cfg-pubkey: 'demopublickey';
-      --darkmode: 0;
-    }
-  </style>
   <script
     async=""
     src="https://cdn.skypack.dev/-/es-module-shims@v1.5.8-O0uWfhbenfjMbv6D3d8E/dist=es2020,mode=raw,min/dist/es-module-shims.js"
@@ -17,12 +10,11 @@
   <script type="importmap">
     {
       "imports": {
-        "@symbiotejs/symbiote": "./node_modules/@symbiotejs/symbiote/build/symbiote.js",
+        "@symbiotejs/symbiote": "./node_modules/@symbiotejs/symbiote/core/index.js",
         "@uploadcare/upload-client": "./node_modules/@uploadcare/upload-client/dist/esm/index.browser.mjs"
       }
     }
   </script>
-  <script src="./index.js" type="module"></script>
   <script type="module">
     import * as LR from './index.js';
     LR.registerBlocks(LR);
@@ -38,7 +30,7 @@
   </script>
 </head>
 
-<lr-file-uploader-regular ctx-name="my-uploader" css-src="./solutions/file-uploader/regular/index.css"></lr-file-uploader-regular>
-<lr-config ctx-name="my-uploader" pubkey="demopublickey" crop-preset="1:1" cloudImageEditorTabs="crop" cloud-image-editor-tabs="crop"></lr-config>
-<lr-data-output ctx-name="my-uploader" use-console></lr-data-output>
-<lr-upload-ctx-provider ctx-name="my-uploader"></lr-upload-ctx-provider>
+<lr-config ctx="my-uploader" pubkey="demopublickey" crop-preset="1:1" cloudImageEditorTabs="crop" cloud-image-editor-tabs="crop"></lr-config>
+<lr-file-uploader-regular ctx="my-uploader" css-src="./solutions/file-uploader/regular/index.css"></lr-file-uploader-regular>
+<lr-data-output ctx="my-uploader" use-console></lr-data-output>
+<lr-upload-ctx-provider ctx="my-uploader"></lr-upload-ctx-provider>

@@ -1,3 +1,5 @@
+import { html } from '@symbiotejs/symbiote';
+
 export const buttonsModel = [
   {
     action: 'fullscreen',
@@ -83,22 +85,15 @@ export const buttonsModel = [
 ];
 
 function getBthHtml(btn) {
-  return /* HTML */ `<button
-  type="button"
-  action="${btn.action}"
-  ref="${btn.ref}"
-  l10n="title:${btn.l10n_name}">
-  <lr-icon
-    set="${btn.set}"
-    name="${btn.icon}">
-  </lr-icon>
-</button>`.trim();
+  return html`<button type="button" action="${btn.action}" ref="${btn.ref}" l10n="title:${btn.l10n_name}">
+    <lr-icon bind="${btn.set}" name="${btn.icon}"> </lr-icon>
+  </button>`.trim();
 }
 
-const clrHtml = /* HTML */ `<lr-color
+const clrHtml = html`<lr-color
   ref="color"
   action="color"
-  set="onchange: onColor"
+  bind="onchange: onColor"
   l10n="title:select-color"
 ></lr-color>`;
 
