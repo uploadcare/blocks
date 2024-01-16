@@ -10,7 +10,7 @@
   <script type="importmap">
     {
       "imports": {
-        "@symbiotejs/symbiote": "./node_modules/@symbiotejs/symbiote/build/symbiote.js",
+        "@symbiotejs/symbiote": "./node_modules/@symbiotejs/symbiote/core/index.js",
         "@uploadcare/upload-client": "./node_modules/@uploadcare/upload-client/dist/esm/index.browser.mjs"
       }
     }
@@ -27,5 +27,5 @@
   </style>
 </head>
 
-<lr-cloud-image-editor uuid="f4dc9ebc-ed6d-4b4d-83d1-863bf1e4bb7f" ctx-name="my-editor" css-src="./solutions/cloud-image-editor/index.css" tabs="tuning,filters,crop"></lr-cloud-image-editor>
-<lr-config ctx-name="my-editor" pubkey="demopublickey"></lr-config>
+<lr-cloud-image-editor uuid="f4dc9ebc-ed6d-4b4d-83d1-863bf1e4bb7f" ctx="my-editor" css-src="./solutions/cloud-image-editor/index.css" tabs="tuning,filters,crop"></lr-cloud-image-editor>
+<lr-config ctx="my-editor" pubkey="demopublickey"></lr-config>

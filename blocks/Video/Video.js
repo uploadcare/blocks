@@ -1,3 +1,4 @@
+import { html } from '@symbiotejs/symbiote';
 import { Block } from '../../abstract/Block.js';
 
 /** @enum {String} */
@@ -222,12 +223,12 @@ export class Video extends Block {
 
       let html = '';
       desc?.sources.forEach((srcDesc) => {
-        html += /* HTML */ `<source ${this._desc2attrs(srcDesc)} />`;
+        html += html`<source ${this._desc2attrs(srcDesc)} />`;
       });
 
       if (desc.tracks) {
         desc.tracks.forEach((trackDesc) => {
-          html += /* HTML */ `<track ${this._desc2attrs(trackDesc)} />`;
+          html += html`<track ${this._desc2attrs(trackDesc)} />`;
         });
         this.$.hasSubtitles = true;
       }
@@ -258,7 +259,7 @@ export class Video extends Block {
   }
 }
 
-Video.template = /* HTML */ `
+Video.template = html`
   <div class="video-wrapper">
     <video ref="video" preload="metadata" crossorigin="anonymous"></video>
   </div>

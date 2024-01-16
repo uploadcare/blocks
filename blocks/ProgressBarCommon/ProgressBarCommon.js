@@ -1,3 +1,4 @@
+import { html } from '@symbiotejs/symbiote';
 import { UploaderBlock } from '../../abstract/UploaderBlock.js';
 
 export class ProgressBarCommon extends UploaderBlock {
@@ -42,6 +43,6 @@ export class ProgressBarCommon extends UploaderBlock {
   }
 }
 
-ProgressBarCommon.template = /* HTML */ `
-  <lr-progress-bar set="visible: visible; unknown: unknown; value: value"></lr-progress-bar>
+ProgressBarCommon.template = html`
+  <lr-progress-bar bind="visible: visible; unknown: unknown; value: value"></lr-progress-bar>
 `;

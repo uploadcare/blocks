@@ -1,6 +1,12 @@
-/** @param {Object<string, any>} blockExports */
+// @ts-check
+
+/** @param {Record<string, unknown>} blockExports */
 export function registerBlocks(blockExports) {
-  for (let blockName in blockExports) {
+  for (let blockName of Object.keys(blockExports)) {
+    const value = blockExports[blockName];
+    if (typeof value !== 'function' || !('reg' in value) || typeof value.reg !== 'function') {
+      continue;
+    }
     let tagName = [...blockName].reduce((name, char) => {
       if (char.toUpperCase() === char) {
         char = '-' + char.toLowerCase();
@@ -13,8 +19,6 @@ export function registerBlocks(blockExports) {
     if (!tagName.startsWith('lr-')) {
       tagName = 'lr-' + tagName;
     }
-    if (blockExports[blockName].reg) {
-      blockExports[blockName].reg(tagName);
-    }
+    value.reg(tagName);
   }
 }

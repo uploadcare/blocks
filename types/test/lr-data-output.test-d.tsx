@@ -2,7 +2,7 @@ import { expectType } from 'tsd';
 import { DataOutput } from '../../index.js';
 import { Output } from '../../blocks/DataOutput/DataOutput.js';
 
-() => <lr-data-output ctx-name="my-uploader" />;
+() => <lr-data-output ctx="my-uploader" />;
 
 const dataOutput = new DataOutput();
 dataOutput.addEventListener('lr-data-output', (e) => {

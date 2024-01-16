@@ -1,7 +1,7 @@
 // @ts-check
 import { ActivityBlock } from './ActivityBlock.js';
 
-import { Data } from '@symbiotejs/symbiote';
+import { PubSub } from '@symbiotejs/symbiote';
 import { calculateMaxCenteredCropFrame } from '../blocks/CloudImageEditor/src/crop-utils.js';
 import { parseCropPreset } from '../blocks/CloudImageEditor/src/lib/parseCropPreset.js';
 import { EventType } from '../blocks/UploadCtxProvider/EventEmitter.js';
@@ -593,7 +593,7 @@ export class UploaderBlock extends ActivityBlock {
    * @returns {import('../types/exported.js').OutputFileEntry}
    */
   getOutputItem(entryId) {
-    const uploadEntryData = Data.getCtx(entryId).store;
+    const uploadEntryData = PubSub.getCtx(entryId).store;
     /** @type {import('@uploadcare/upload-client').UploadcareFile} */
     const fileInfo = uploadEntryData.fileInfo || {
       name: uploadEntryData.fileName,

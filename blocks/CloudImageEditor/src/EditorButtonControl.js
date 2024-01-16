@@ -1,3 +1,4 @@
+import { html } from '@symbiotejs/symbiote';
 import { CloudImageEditorBase } from './CloudImageEditorBase.js';
 import { classNames } from './lib/classNames.js';
 
@@ -41,8 +42,8 @@ export class EditorButtonControl extends CloudImageEditorBase {
   }
 }
 
-EditorButtonControl.template = /* HTML */ `
+EditorButtonControl.template = html`
   <div class="before"></div>
-  <lr-icon size="20" set="@name: icon;"></lr-icon>
+  <lr-icon size="20" bind="@name: icon;"></lr-icon>
   <div class="title" ref="title-el">{{title}}</div>
 `;

@@ -4,28 +4,28 @@ import '../jsx.js';
 import { OutputFileEntry } from '../index.js';
 
 // @ts-expect-error untyped props
-() => <lr-config ctx-name="1" something="wrong"></lr-config>;
+() => <lr-config ctx="1" something="wrong"></lr-config>;
 
-// @ts-expect-error missing ctx-name
+// @ts-expect-error missing ctx
 () => <lr-config></lr-config>;
 
-// allow common html attributes and required ctx-name
-() => <lr-config ctx-name="1" id="1" class="1" hidden></lr-config>;
+// allow common html attributes and required ctx
+() => <lr-config ctx="1" id="1" class="1" hidden></lr-config>;
 
 // allow key prop
-() => <lr-config ctx-name="1" key={1}></lr-config>;
+() => <lr-config ctx="1" key={1}></lr-config>;
 
 // allow useRef hook
 () => {
   const ref = React.useRef<InstanceType<Config> | null>(null);
   expectType<InstanceType<Config> | null>(ref.current);
-  <lr-config ctx-name="1" ref={ref}></lr-config>;
+  <lr-config ctx="1" ref={ref}></lr-config>;
 };
 
 // allow callback ref
 () => {
   <lr-config
-    ctx-name="1"
+    ctx="1"
     ref={(el) => {
       expectType<InstanceType<Config> | null>(el);
     }}
@@ -36,11 +36,11 @@ import { OutputFileEntry } from '../index.js';
 () => {
   const ref = React.createRef<InstanceType<Config>>();
   expectType<InstanceType<Config> | null>(ref.current);
-  <lr-config ctx-name="1" ref={ref}></lr-config>;
+  <lr-config ctx="1" ref={ref}></lr-config>;
 };
 
 // accept config attributes
-() => <lr-config ctx-name="1" multiple multipleMax={1} multipleMin={2} accept="str" />;
+() => <lr-config ctx="1" multiple multipleMax={1} multipleMin={2} accept="str" />;
 
 // allow to use DOM properties
 () => {

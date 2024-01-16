@@ -1,8 +1,9 @@
-import { UploaderBlock } from '../../abstract/UploaderBlock.js';
+import { html } from '@symbiotejs/symbiote';
 import { ActivityBlock } from '../../abstract/ActivityBlock.js';
+import { UploaderBlock } from '../../abstract/UploaderBlock.js';
 import { createCdnUrl, createCdnUrlModifiers } from '../../utils/cdn-utils.js';
-import { fileCssBg } from '../svg-backgrounds/svg-backgrounds.js';
 import { fileIsImage } from '../../utils/fileTypes.js';
+import { fileCssBg } from '../svg-backgrounds/svg-backgrounds.js';
 
 export class UploadDetails extends UploaderBlock {
   activityType = ActivityBlock.activities.DETAILS;
@@ -132,13 +133,13 @@ export class UploadDetails extends UploaderBlock {
   }
 }
 
-UploadDetails.template = /* HTML */ `
+UploadDetails.template = html`
   <lr-activity-header>
-    <button type="button" class="mini-btn" set="onclick: *historyBack">
+    <button type="button" class="mini-btn" bind="onclick: *historyBack">
       <lr-icon name="back"></lr-icon>
     </button>
     <span l10n="caption-edit-file"></span>
-    <button type="button" class="mini-btn close-btn" set="onclick: *closeModal">
+    <button type="button" class="mini-btn close-btn" bind="onclick: *closeModal">
       <lr-icon name="close"></lr-icon>
     </button>
   </lr-activity-header>
@@ -150,7 +151,7 @@ UploadDetails.template = /* HTML */ `
           <input
             name="name-input"
             ref="file_name_input"
-            set="value: fileName; oninput: onNameInput; @disabled: !!cdnUrl"
+            bind="value: fileName; oninput: onNameInput; @disabled: !!cdnUrl"
             type="text"
           />
         </div>
@@ -162,26 +163,26 @@ UploadDetails.template = /* HTML */ `
 
         <div class="info-block">
           <div class="info-block_name" l10n="cdn-url"></div>
-          <a class="cdn-link" target="_blank" set="@href: cdnUrl; @disabled: !cdnUrl">{{cdnUrl}}</a>
+          <a class="cdn-link" target="_blank" bind="@href: cdnUrl; @disabled: !cdnUrl">{{cdnUrl}}</a>
         </div>
 
         <div>{{errorTxt}}</div>
       </div>
 
-      <lr-file-preview tab-ctx="tab-view" set="@checkerboard: checkerboard;" ref="filePreview"> </lr-file-preview>
+      <lr-file-preview tab-ctx="tab-view" bind="@checkerboard: checkerboard;" ref="filePreview"> </lr-file-preview>
     </lr-tabs>
 
-    <div class="toolbar" set="@edit-disabled: cloudEditBtnHidden">
-      <button type="button" class="edit-btn secondary-btn" set="onclick: onCloudEdit; @hidden: cloudEditBtnHidden;">
+    <div class="toolbar" bind="@edit-disabled: cloudEditBtnHidden">
+      <button type="button" class="edit-btn secondary-btn" bind="onclick: onCloudEdit; @hidden: cloudEditBtnHidden;">
         <lr-icon name="edit"></lr-icon>
         <span l10n="edit-image"></span>
       </button>
-      <button type="button" class="remove-btn secondary-btn" set="onclick: onRemove">
+      <button type="button" class="remove-btn secondary-btn" bind="onclick: onRemove">
         <lr-icon name="remove"></lr-icon>
         <span l10n="remove-from-list"></span>
       </button>
       <div></div>
-      <button type="button" class="back-btn primary-btn" set="onclick: onBack">
+      <button type="button" class="back-btn primary-btn" bind="onclick: onBack">
         <span l10n="ok"></span>
       </button>
     </div>

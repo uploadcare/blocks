@@ -1,18 +1,19 @@
+import { html } from '@symbiotejs/symbiote';
 import { Block } from '../../abstract/Block.js';
 
-const INIT_HTML = /* HTML */ `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  CONTENT
-</body>
-</html>
+const INIT_HTML = html`
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charbind="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+    </head>
+    <body>
+      CONTENT
+    </body>
+  </html>
 `.trim();
 
 class Caret {
@@ -102,7 +103,7 @@ class Caret {
   }
 }
 
-const headerHtml = /* HTML */ `
+const headerHtml = html`
   <script>
     window.__IS_REF__ = true;
     window.addEventListener('DOMContentLoaded', () => {
@@ -262,12 +263,12 @@ LiveHtml.bindAttributes({
   src: 'src',
 });
 
-LiveHtml.template = /* HTML */ `
+LiveHtml.template = html`
   <div
     ref="editor"
     contenteditable="true"
-    set="textContent:code; oninput:onInput; onkeydown:onKeydown; spellcheck:spellcheck"
+    bind="textContent:code; oninput:onInput; onkeydown:onKeydown; spellcheck:spellcheck"
   ></div>
   <iframe ref="vp"></iframe>
-  <button class="open-new-tab-btn" set="onclick: onNewTabClick">Open in the new tab</button>
+  <button class="open-new-tab-btn" bind="onclick: onNewTabClick">Open in the new tab</button>
 `;

@@ -1,8 +1,9 @@
+import { html } from '@symbiotejs/symbiote';
 import { createCdnUrl, createCdnUrlModifiers } from '../../../utils/cdn-utils.js';
 import { EditorButtonControl } from './EditorButtonControl.js';
 import { FAKE_ORIGINAL_FILTER } from './EditorSlider.js';
-import { COMMON_OPERATIONS, transformationsToOperations } from './lib/transformationUtils.js';
 import { preloadImage } from './lib/preloadImage.js';
+import { COMMON_OPERATIONS, transformationsToOperations } from './lib/transformationUtils.js';
 
 export class EditorFilterControl extends EditorButtonControl {
   init$ = {
@@ -147,8 +148,8 @@ export class EditorFilterControl extends EditorButtonControl {
   }
 }
 
-EditorFilterControl.template = /* HTML */ `
+EditorFilterControl.template = html`
   <div class="before"></div>
   <div class="preview" ref="preview-el"></div>
-  <lr-icon size="40" ref="icon-el" set="@name: icon; @size: iconSize;"></lr-icon>
+  <lr-icon size="40" ref="icon-el" bind="@name: icon; @size: iconSize;"></lr-icon>
 `;

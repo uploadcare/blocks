@@ -1,3 +1,4 @@
+import { html } from '@symbiotejs/symbiote';
 import { ActivityBlock } from '../../abstract/ActivityBlock.js';
 
 export class UiConfirmation {
@@ -58,20 +59,20 @@ export class ConfirmationDialog extends ActivityBlock {
   }
 }
 
-ConfirmationDialog.template = /* HTML */ `
+ConfirmationDialog.template = html`
   <lr-activity-header>
-    <button type="button" class="mini-btn" set="onclick: *historyBack">
+    <button type="button" class="mini-btn" bind="onclick: *historyBack">
       <lr-icon name="back"></lr-icon>
     </button>
     <span>{{activityCaption}}</span>
-    <button type="button" class="mini-btn close-btn" set="onclick: *closeModal">
+    <button type="button" class="mini-btn close-btn" bind="onclick: *closeModal">
       <lr-icon name="close"></lr-icon>
     </button>
   </lr-activity-header>
 
   <div class="message">{{messageTxt}}</div>
   <div class="toolbar">
-    <button type="button" class="deny-btn secondary-btn" set="onclick: onDeny">{{denyBtnTxt}}</button>
-    <button type="button" class="confirm-btn primary-btn" set="onclick: onConfirm">{{confirmBtnTxt}}</button>
+    <button type="button" class="deny-btn secondary-btn" bind="onclick: onDeny">{{denyBtnTxt}}</button>
+    <button type="button" class="confirm-btn primary-btn" bind="onclick: onConfirm">{{confirmBtnTxt}}</button>
   </div>
 `;

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     .config {
-      --ctx-name: 'my-uploader';
+      --ctx: 'my-uploader';
       --cfg-pubkey: 'demopublickey';
       --darkmode: 0;
     }
@@ -17,7 +17,7 @@
   <script type="importmap">
     {
       "imports": {
-        "@symbiotejs/symbiote": "./node_modules/@symbiotejs/symbiote/build/symbiote.js",
+        "@symbiotejs/symbiote": "./node_modules/@symbiotejs/symbiote/core/index.js",
         "@uploadcare/upload-client": "./node_modules/@uploadcare/upload-client/dist/esm/index.browser.mjs"
       }
     }
@@ -30,14 +30,14 @@
 </head>
 
 <lr-file-uploader-inline
-  ctx-name="my-uploader"
+  ctx="my-uploader"
   css-src="./solutions/file-uploader/inline/index.css"
 ></lr-file-uploader-inline>
 <lr-config
-  ctx-name="my-uploader"
+  ctx="my-uploader"
   pubkey="demopublickey"
   crop-preset="1:1"
   cloudImageEditorTabs="crop"
   cloud-image-editor-tabs="crop"
 ></lr-config>
-<lr-data-output ctx-name="my-uploader" use-console></lr-data-output>
+<lr-data-output ctx="my-uploader" use-console></lr-data-output>

@@ -1,3 +1,4 @@
+import { html } from '@symbiotejs/symbiote';
 import { ActivityBlock } from '../../../abstract/ActivityBlock.js';
 import { SolutionBlock } from '../../../abstract/SolutionBlock.js';
 
@@ -35,7 +36,7 @@ export class FileUploaderMinimal extends SolutionBlock {
   }
 }
 
-FileUploaderMinimal.template = /* HTML */ `
+FileUploaderMinimal.template = html`
   <lr-start-from>
     <lr-drop-area clickable l10n="choose-file"></lr-drop-area>
     <lr-copyright></lr-copyright>

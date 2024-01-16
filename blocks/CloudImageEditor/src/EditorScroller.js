@@ -1,3 +1,4 @@
+import { html } from '@symbiotejs/symbiote';
 import { CloudImageEditorBase } from './CloudImageEditorBase.js';
 
 const X_THRESHOLD = 1;
@@ -18,4 +19,4 @@ export class EditorScroller extends CloudImageEditorBase {
   }
 }
 
-EditorScroller.template = /* HTML */ ` <slot></slot> `;
+EditorScroller.template = html` <slot></slot> `;

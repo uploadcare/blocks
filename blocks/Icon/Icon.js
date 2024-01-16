@@ -1,3 +1,4 @@
+import { html } from '@symbiotejs/symbiote';
 import { Block } from '../../abstract/Block.js';
 
 export class Icon extends Block {
@@ -41,8 +42,8 @@ export class Icon extends Block {
   }
 }
 
-Icon.template = /* HTML */ `
-  <svg ref="svg" xmlns="http://www.w3.org/2000/svg" set="@viewBox: viewBox; @height: size; @width: size"></svg>
+Icon.template = html`
+  <svg ref="svg" xmlns="http://www.w3.org/2000/svg" bind="@viewBox: viewBox; @height: size; @width: size"></svg>
 `;
 
 Icon.bindAttributes({

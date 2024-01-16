@@ -1,8 +1,9 @@
-import { UploaderBlock } from '../../abstract/UploaderBlock.js';
+import { html } from '@symbiotejs/symbiote';
 import { ActivityBlock } from '../../abstract/ActivityBlock.js';
+import { UploaderBlock } from '../../abstract/UploaderBlock.js';
+import { UploadSource } from '../utils/UploadSource.js';
 import { canUsePermissionsApi } from '../utils/abilities.js';
 import { debounce } from '../utils/debounce.js';
-import { UploadSource } from '../utils/UploadSource.js';
 
 export class CameraSource extends UploaderBlock {
   couldBeCtxOwner = true;
@@ -213,21 +214,21 @@ export class CameraSource extends UploaderBlock {
   }
 }
 
-CameraSource.template = /* HTML */ `
+CameraSource.template = html`
   <lr-activity-header>
-    <button type="button" class="mini-btn" set="onclick: *historyBack">
+    <button type="button" class="mini-btn" bind="onclick: *historyBack">
       <lr-icon name="back"></lr-icon>
     </button>
-    <div set="@hidden: !cameraSelectHidden">
+    <div bind="@hidden: !cameraSelectHidden">
       <lr-icon name="camera"></lr-icon>
       <span l10n="caption-camera"></span>
     </div>
     <lr-select
       class="camera-select"
-      set="$.options: cameraSelectOptions; @hidden: cameraSelectHidden; onchange: onCameraSelectChange"
+      bind="$.options: cameraSelectOptions; @hidden: cameraSelectHidden; onchange: onCameraSelectChange"
     >
     </lr-select>
-    <button type="button" class="mini-btn close-btn" set="onclick: *closeModal">
+    <button type="button" class="mini-btn close-btn" bind="onclick: *closeModal">
       <lr-icon name="close"></lr-icon>
     </button>
   </lr-activity-header>
@@ -235,19 +236,19 @@ CameraSource.template = /* HTML */ `
     <video
       autoplay
       playsinline
-      set="srcObject: video; style.transform: videoTransformCss; @hidden: videoHidden"
+      bind="srcObject: video; style.transform: videoTransformCss; @hidden: videoHidden"
       ref="video"
     ></video>
-    <div class="message-box" set="@hidden: messageHidden">
+    <div class="message-box" bind="@hidden: messageHidden">
       <span>{{l10nMessage}}</span>
       <span>{{originalErrorMessage}}</span>
       <button
         type="button"
-        set="onclick: onRequestPermissions; @hidden: requestBtnHidden"
+        bind="onclick: onRequestPermissions; @hidden: requestBtnHidden"
         l10n="camera-permissions-request"
       ></button>
     </div>
-    <button type="button" class="shot-btn" set="onclick: onShot; @disabled: shotBtnDisabled">
+    <button type="button" class="shot-btn" bind="onclick: onShot; @disabled: shotBtnDisabled">
       <lr-icon name="camera"></lr-icon>
     </button>
   </div>

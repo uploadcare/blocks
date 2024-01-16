@@ -1,5 +1,5 @@
 // @ts-check
-import { BaseComponent, Data } from '@symbiotejs/symbiote';
+import { Symbiote, DICT, PubSub, slotProcessor } from '@symbiotejs/symbiote';
 import { EventEmitter } from '../blocks/UploadCtxProvider/EventEmitter.js';
 import { WindowHeightTracker } from '../utils/WindowHeightTracker.js';
 import { getPluralForm } from '../utils/getPluralForm.js';
@@ -14,7 +14,7 @@ import { sharedConfigKey } from './sharedConfigKey.js';
 const TAG_PREFIX = 'lr-';
 
 // @ts-ignore TODO: fix this
-export class Block extends BaseComponent {
+export class Block extends Symbiote {
   /** @type {string | null} */
   static StateConsumerScope = null;
   static className = '';
@@ -76,6 +76,8 @@ export class Block extends BaseComponent {
      * @type {String[]}
      */
     this.__l10nKeys = [];
+
+    this.addTemplateProcessor(slotProcessor);
   }
 
   /**
@@ -155,14 +157,14 @@ export class Block extends BaseComponent {
     if (this.requireCtxName) {
       waitForAttribute({
         element: this,
-        attribute: 'ctx-name',
+        attribute: DICT.CTX_NAME_ATTR,
         onSuccess: () => {
-          // async wait for ctx-name attribute to be set, needed for Angular because it sets attributes after mount
+          // async wait for ctx attribute to be set, needed for Angular because it sets attributes after mount
           // TODO: should be moved to the symbiote core
           super.connectedCallback();
         },
         onTimeout: () => {
-          console.error('Attribute `ctx-name` is required and it is not set.');
+          console.error(`Attribute "${DICT.CTX_NAME_ATTR}" is required and it is not set.`);
         },
       });
     } else {
@@ -193,7 +195,7 @@ export class Block extends BaseComponent {
 
     // Destroy local context
     // TODO: this should be done inside symbiote
-    Data.deleteCtx(this);
+    PubSub.deleteCtx(this.localCtxUid);
 
     if (blocksRegistry.size === 0) {
       setTimeout(() => {
@@ -209,7 +211,7 @@ export class Block extends BaseComponent {
    * @protected
    */
   destroyCtxCallback() {
-    Data.deleteCtx(this.ctxName);
+    PubSub.deleteCtx(this.ctxName);
   }
 
   /**
@@ -256,7 +258,7 @@ export class Block extends BaseComponent {
    */
   parseCfgProp(prop) {
     return {
-      ctx: this.nodeCtx,
+      ctx: this.sharedCtx,
       name: prop.replace('*', ''),
     };
   }
@@ -282,6 +284,7 @@ export class Block extends BaseComponent {
         get: (obj, key) => {
           const sharedKey = sharedConfigKey(key);
           const parsed = this.parseCfgProp(sharedKey);
+
           if (parsed.ctx.has(parsed.name)) {
             return parsed.ctx.read(parsed.name);
           } else {
@@ -335,5 +338,3 @@ export class Block extends BaseComponent {
     super.reg(name.startsWith(TAG_PREFIX) ? name : TAG_PREFIX + name);
   }
 }
-
-export { BaseComponent };

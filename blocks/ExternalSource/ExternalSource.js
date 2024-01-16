@@ -1,6 +1,6 @@
 // @ts-check
 
-import { create } from '@symbiotejs/symbiote';
+import { create, html } from '@symbiotejs/symbiote';
 import { ActivityBlock } from '../../abstract/ActivityBlock.js';
 import { UploaderBlock } from '../../abstract/UploaderBlock.js';
 import { stringToArray } from '../../utils/stringToArray.js';
@@ -217,26 +217,26 @@ export class ExternalSource extends UploaderBlock {
   }
 }
 
-ExternalSource.template = /* HTML */ `
+ExternalSource.template = html`
   <lr-activity-header>
-    <button type="button" class="mini-btn" set="onclick: *historyBack">
+    <button type="button" class="mini-btn" bind="onclick: *historyBack">
       <lr-icon name="back"></lr-icon>
     </button>
     <div>
-      <lr-icon set="@name: activityIcon"></lr-icon>
+      <lr-icon bind="@name: activityIcon"></lr-icon>
       <span>{{activityCaption}}</span>
     </div>
-    <button type="button" class="mini-btn close-btn" set="onclick: *historyBack">
+    <button type="button" class="mini-btn close-btn" bind="onclick: *historyBack">
       <lr-icon name="close"></lr-icon>
     </button>
   </lr-activity-header>
   <div class="content">
     <div ref="iframeWrapper" class="iframe-wrapper"></div>
     <div class="toolbar">
-      <button type="button" class="cancel-btn secondary-btn" set="onclick: onCancel" l10n="cancel"></button>
+      <button type="button" class="cancel-btn secondary-btn" bind="onclick: onCancel" l10n="cancel"></button>
       <div></div>
       <div class="selected-counter"><span l10n="selected-count"></span>{{counter}}</div>
-      <button type="button" class="done-btn primary-btn" set="onclick: onDone; @disabled: !counter">
+      <button type="button" class="done-btn primary-btn" bind="onclick: onDone; @disabled: !counter">
         <lr-icon name="check"></lr-icon>
       </button>
     </div>

@@ -1,6 +1,6 @@
 // @ts-check
 
-import { Data } from '@symbiotejs/symbiote';
+import { PubSub, html } from '@symbiotejs/symbiote';
 import { ActivityBlock } from '../../abstract/ActivityBlock.js';
 import { UploaderBlock } from '../../abstract/UploaderBlock.js';
 import { stringToArray } from '../../utils/stringToArray.js';
@@ -218,7 +218,7 @@ export class DropArea extends UploaderBlock {
     if (registry) {
       registry.delete(this);
       if (registry.size === 0) {
-        Data.deleteCtx(GLOBAL_CTX_NAME);
+        PubSub.deleteCtx(GLOBAL_CTX_NAME);
       }
     }
 
@@ -230,11 +230,11 @@ export class DropArea extends UploaderBlock {
   }
 }
 
-DropArea.template = /* HTML */ `
+DropArea.template = html`
   <slot>
     <div data-default-slot hidden></div>
-    <div ref="content-wrapper" class="content-wrapper" set="@hidden: !isVisible">
-      <div class="icon-container" set="@hidden: !withIcon">
+    <div ref="content-wrapper" class="content-wrapper" bind="@hidden: !isVisible">
+      <div class="icon-container" bind="@hidden: !withIcon">
         <lr-icon name="default"></lr-icon>
         <lr-icon name="arrow-down"></lr-icon>
       </div>

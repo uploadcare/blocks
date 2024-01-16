@@ -1,5 +1,6 @@
 // @ts-check
 
+import { html } from '@symbiotejs/symbiote';
 import { debounce } from '../../utils/debounce.js';
 import { throttle } from '../../utils/throttle.js';
 import { CloudImageEditorBase } from './CloudImageEditorBase.js';
@@ -545,7 +546,7 @@ export class EditorImageCropper extends CloudImageEditorBase {
   }
 }
 
-EditorImageCropper.template = /* HTML */ `
+EditorImageCropper.template = html`
   <canvas class="canvas" ref="canvas-el"></canvas>
   <lr-crop-frame ref="frame-el"></lr-crop-frame>
 `;

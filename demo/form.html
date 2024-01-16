@@ -10,7 +10,7 @@
   <script type="importmap">
     {
       "imports": {
-        "@symbiotejs/symbiote": "./node_modules/@symbiotejs/symbiote/build/symbiote.js",
+        "@symbiotejs/symbiote": "./node_modules/@symbiotejs/symbiote/core/index.js",
         "@uploadcare/upload-client": "./node_modules/@uploadcare/upload-client/dist/esm/index.browser.mjs"
       }
     }
@@ -27,13 +27,13 @@
   </script>
 </head>
 
-<lr-config ctx-name="my-uploader" pubkey="demopublickey" multiple multiple-min="2" multiple-max="3"></lr-config>
+<lr-config ctx="my-uploader" pubkey="demopublickey" multiple multiple-min="2" multiple-max="3"></lr-config>
 
 <form>
-  <lr-file-uploader-regular style="position: relative; display: inline-block;" ctx-name="my-uploader" css-src="./blocks/themes/lr-basic/index.css">
+  <lr-file-uploader-regular style="position: relative; display: inline-block;" ctx="my-uploader" css-src="./blocks/themes/lr-basic/index.css">
     <lr-data-output
       style="position: absolute; bottom: 0px; left: 50%"
-      ctx-name="my-uploader"
+      ctx="my-uploader"
       use-console
       use-input
       input-required

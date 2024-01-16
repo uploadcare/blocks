@@ -1,4 +1,5 @@
 // @ts-check
+import { html } from '@symbiotejs/symbiote';
 import { CloudImageEditorBase } from './CloudImageEditorBase.js';
 import {
   clamp,
@@ -20,7 +21,6 @@ import {
   MIN_CROP_SIZE,
   MIN_INTERACTION_SIZE,
   THUMB_CORNER_SIZE,
-  THUMB_OFFSET,
   THUMB_SIDE_SIZE,
   THUMB_STROKE_WIDTH,
 } from './cropper-constants.js';
@@ -509,4 +509,4 @@ export class CropFrame extends CloudImageEditorBase {
   }
 }
 
-CropFrame.template = /* HTML */ ` <svg class="svg" ref="svg-el" xmlns="http://www.w3.org/2000/svg"></svg> `;
+CropFrame.template = html` <svg class="svg" ref="svg-el" xmlns="http://www.w3.org/2000/svg"></svg> `;

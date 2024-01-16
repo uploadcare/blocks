@@ -1,3 +1,4 @@
+import { html } from '@symbiotejs/symbiote';
 import { Block } from '../../abstract/Block.js';
 
 export class Color extends Block {
@@ -11,7 +12,7 @@ export class Color extends Block {
   };
 }
 
-Color.template = /* HTML */ `
-  <input ref="input" type="color" set="oninput: onChange; style.opacity: inputOpacity" />
-  <div class="current-color" set="style.backgroundColor: *selectedColor"></div>
+Color.template = html`
+  <input ref="input" type="color" bind="oninput: onChange; style.opacity: inputOpacity" />
+  <div class="current-color" bind="style.backgroundColor: *selectedColor"></div>
 `;

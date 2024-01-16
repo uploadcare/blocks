@@ -1,3 +1,4 @@
+import { html } from '@symbiotejs/symbiote';
 import { CloudImageEditorBase } from './CloudImageEditorBase.js';
 import { COLOR_OPERATIONS_CONFIG } from './toolbar-constants.js';
 
@@ -110,9 +111,9 @@ export class EditorSlider extends CloudImageEditorBase {
   }
 }
 
-EditorSlider.template = /* HTML */ `
+EditorSlider.template = html`
   <lr-slider-ui
     ref="slider-el"
-    set="disabled: disabled; min: min; max: max; defaultValue: defaultValue; zero: zero; onInput: on.input;"
+    bind="disabled: disabled; min: min; max: max; defaultValue: defaultValue; zero: zero; onInput: on.input;"
   ></lr-slider-ui>
 `;

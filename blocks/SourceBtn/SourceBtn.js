@@ -1,5 +1,6 @@
-import { UploaderBlock } from '../../abstract/UploaderBlock.js';
+import { html } from '@symbiotejs/symbiote';
 import { ActivityBlock } from '../../abstract/ActivityBlock.js';
+import { UploaderBlock } from '../../abstract/UploaderBlock.js';
 
 const L10N_PREFIX = 'src-type-';
 
@@ -95,8 +96,8 @@ export class SourceBtn extends UploaderBlock {
     };
   }
 }
-SourceBtn.template = /* HTML */ `
-  <lr-icon set="@name: iconName"></lr-icon>
+SourceBtn.template = html`
+  <lr-icon bind="@name: iconName"></lr-icon>
   <div class="txt" l10n="src-type"></div>
 `;
 SourceBtn.bindAttributes({

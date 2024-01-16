@@ -1,8 +1,8 @@
 // @ts-check
-import { Data } from '@symbiotejs/symbiote';
+import { DICT, PubSub } from '@symbiotejs/symbiote';
 import { Block } from '../../../abstract/Block.js';
 
-const CSS_CFG_CTX_NAME = '--cfg-ctx-name';
+const CSS_CFG_CTX_NAME = DICT.CTX_NAME_ATTR.replace('--', '--cfg-');
 
 export class CloudImageEditorBase extends Block {
   /**
@@ -15,7 +15,7 @@ export class CloudImageEditorBase extends Block {
 
   /** @private */
   get cfgCtxName() {
-    const ctxName = this.getAttribute('ctx-name')?.trim() || this.cfgCssCtxName || this.__cachedCfgCtxName;
+    const ctxName = this.getAttribute(DICT.CTX_NAME_ATTR)?.trim() || this.cfgCssCtxName || this.__cachedCfgCtxName;
     /**
      * Cache last ctx name to be able to access context when element becames disconnected
      *
@@ -27,7 +27,7 @@ export class CloudImageEditorBase extends Block {
 
   connectedCallback() {
     if (!this.connectedOnce) {
-      const ctxName = this.getAttribute('ctx-name')?.trim();
+      const ctxName = this.getAttribute(DICT.CTX_NAME_ATTR)?.trim();
       if (ctxName) {
         this.style.setProperty(CSS_CFG_CTX_NAME, `'${ctxName}'`);
       }
@@ -44,9 +44,12 @@ export class CloudImageEditorBase extends Block {
    * @protected
    */
   parseCfgProp(prop) {
+    if (!this.cfgCtxName) {
+      throw new Error(`Context name is not defined for ${this.tagName.toLowerCase()}`);
+    }
     const parsed = {
       ...super.parseCfgProp(prop),
-      ctx: Data.getCtx(this.cfgCtxName),
+      ctx: PubSub.getCtx(this.cfgCtxName),
     };
     return parsed;
   }

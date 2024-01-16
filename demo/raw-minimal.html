@@ -10,7 +10,7 @@
   <script type="importmap">
     {
       "imports": {
-        "@symbiotejs/symbiote": "./node_modules/@symbiotejs/symbiote/build/symbiote.js",
+        "@symbiotejs/symbiote": "./node_modules/@symbiotejs/symbiote/core/index.js",
         "@uploadcare/upload-client": "./node_modules/@uploadcare/upload-client/dist/esm/index.browser.mjs"
       }
     }
@@ -22,6 +22,6 @@
   </script>
 </head>
 
-<lr-file-uploader-minimal ctx-name="my-uploader" css-src="./solutions/file-uploader/minimal/index.css"></lr-file-uploader-minimal>
-<lr-config ctx-name="my-uploader" pubkey="demopublickey" crop-preset="1:1" cloudImageEditorTabs="crop" cloud-image-editor-tabs="crop"></lr-config>
-<lr-data-output ctx-name="my-uploader" use-console></lr-data-output>
+<lr-file-uploader-minimal ctx="my-uploader" css-src="./solutions/file-uploader/minimal/index.css"></lr-file-uploader-minimal>
+<lr-config ctx="my-uploader" pubkey="demopublickey" crop-preset="1:1" cloudImageEditorTabs="crop" cloud-image-editor-tabs="crop"></lr-config>
+<lr-data-output ctx="my-uploader" use-console></lr-data-output>
